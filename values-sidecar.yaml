@@ -1,0 +1,10 @@
+replicaCount: 1
+sidecars:
+  - name: thanos-sidecar
+    image:
+      repository: bitnami/thanos-sidecar
+      pullPolicy: IfNotPresent
+    args:
+      - "query"
+      - "--store=dnssrv+_thanos._tcp.thanos-store.default.svc.cluster.local"
+      - "--http-address=0.0.0.0:10902"
