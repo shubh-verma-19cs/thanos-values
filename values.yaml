@@ -320,8 +320,16 @@ query:
   ##       - name: portname
   ##         containerPort: 1234
   ##
-  # sidecars:
-  #     - name: my-release-thanos-query
+  sidecars:
+    - name: thanos-sidecar
+      image:
+        repository: bitnami/thanos-sidecar
+        # tag: <version>  # Replace <version> with the desired version of Thanos sidecar
+        pullPolicy: IfNotPresent
+      args:
+        - "query"
+        - "--store=dnssrv+_thanos._tcp.thanos-store.default.svc.cluster.local"
+        - "--http-address=0.0.0.0:10902"
         
   ## @param query.extraVolumes Extra volumes to add to Thanos Query
   ##
