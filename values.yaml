@@ -100,6 +100,16 @@ existingHttpConfigSecret: ""
 ## HTTPS configuration (Experimental)
 ## Ref: https://thanos.io/tip/operating/https.md/
 ##
+
+sidecars:
+  - name: thanos-sidecar
+    image:
+      repository: bitnami/thanos-sidecar
+      pullPolicy: IfNotPresent
+    args:
+      - "sidecar"
+      - "--prometheus.url=http://prometheus.prometheus:9090"  
+
 https:
   ## @param https.enabled Set to true to enable HTTPS. Requires a secret containing the certificate and key.
   ##
@@ -158,7 +168,7 @@ serviceAccount:
 query:
   ## @param query.enabled Set to true to enable Thanos Query component
   ##
-  enabled: true
+  enabled: false
   ## @param query.logLevel Thanos Query log level
   ##
   logLevel: info
@@ -320,16 +330,16 @@ query:
   ##       - name: portname
   ##         containerPort: 1234
   ##
-  sidecars:
-    - name: thanos-sidecar
-      image:
-        repository: bitnami/thanos-sidecar
-        # tag: <version>  # Replace <version> with the desired version of Thanos sidecar
-        pullPolicy: IfNotPresent
-      args:
-        - "query"
-        - "--store=dnssrv+_thanos._tcp.thanos-store.default.svc.cluster.local"
-        - "--http-address=0.0.0.0:10902"
+  # sidecars:
+  #   - name: thanos-sidecar
+  #     image:
+  #       repository: bitnami/thanos-sidecar
+  #       # tag: <version>  # Replace <version> with the desired version of Thanos sidecar
+  #       pullPolicy: IfNotPresent
+  #     args:
+  #       - "query"
+  #       - "--store=dnssrv+_thanos._tcp.thanos-store.default.svc.cluster.local"
+  #       - "--http-address=0.0.0.0:10902"
         
   ## @param query.extraVolumes Extra volumes to add to Thanos Query
   ##
