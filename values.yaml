@@ -182,7 +182,7 @@ query:
   prometheus:
       staticConfigs:
         - targets:
-            - prometheus.prometheus.svc.cluster.local:9090
+            - prometheus-server.prometheus.svc.cluster.local:9090
 
 
 
