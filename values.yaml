@@ -108,7 +108,7 @@ sidecars:
       pullPolicy: IfNotPresent
     args:
       - "sidecar"
-      - "--prometheus.url=http://prometheus.prometheus:9090"  
+      - "--prometheus.url=http://localhost:9090"  
 
 https:
   ## @param https.enabled Set to true to enable HTTPS. Requires a secret containing the certificate and key.
@@ -182,7 +182,7 @@ query:
   prometheus:
       staticConfigs:
         - targets:
-            - prometheus-server.prometheus.svc.cluster.local:9090
+            - prometheus-prometheus-server.svc.cluster.local:9090
 
 
 
@@ -4085,15 +4085,8 @@ metrics:
     namespace: "prometheus"
     ## @param metrics.serviceMonitor.labels Extra labels for the ServiceMonitor
     ##
-    labels:
-        app.kubernetes.io/component:  server
-        app.kubernetes.io/instance:  prometheus
-        app.kubernetes.io/managed-by:  Helm
-        app.kubernetes.io/name:  prometheus
-        app.kubernetes.io/part-of:  prometheus
-        app.kubernetes.io/version:  v2.43.0
-        helm.sh/chart:  prometheus-21.0.0
-        pod-template-hash:  f9f8fb85f
+    labels: {}
+
     ## @param metrics.serviceMonitor.jobLabel The name of the label on the target service to use as the job name in Prometheus
     ##
     jobLabel: ""
@@ -4101,7 +4094,7 @@ metrics:
     ## e.g:
     ## interval: 10s
     ##
-    interval: ""
+    interval: 10s
     ## @param metrics.serviceMonitor.scrapeTimeout Timeout after which the scrape is ended
     ## e.g:
     ## scrapeTimeout: 10s
@@ -4116,7 +4109,15 @@ metrics:
     ## @param metrics.serviceMonitor.selector Prometheus instance selector labels
     ## ref: https://github.com/bitnami/charts/tree/main/bitnami/prometheus-operator#prometheus-configuration
     ##
-    selector: {}
+    selector:
+        app.kubernetes.io/component:  server
+        app.kubernetes.io/instance:  prometheus
+        app.kubernetes.io/managed-by:  Helm
+        app.kubernetes.io/name:  prometheus
+        app.kubernetes.io/part-of:  prometheus
+        app.kubernetes.io/version:  v2.43.0
+        helm.sh/chart:  prometheus-21.0.0
+        pod-template-hash:  f9f8fb85f
     ## @param metrics.serviceMonitor.extraParameters Any extra parameter to be added to the endpoint configured in the ServiceMonitor
     ## (e.g. tlsConfig for further customization of the HTTPS behavior)
     ## Note that the 'scheme' is automatically set to 'https' when the 'https.enabled' flag is used in this chart.
