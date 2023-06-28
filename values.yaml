@@ -4108,15 +4108,15 @@ metrics:
     ## @param metrics.serviceMonitor.selector Prometheus instance selector labels
     ## ref: https://github.com/bitnami/charts/tree/main/bitnami/prometheus-operator#prometheus-configuration
     ##
-    selector: {}
-        # app.kubernetes.io/component:  server
-        # app.kubernetes.io/instance:  prometheus
-        # app.kubernetes.io/managed-by:  Helm
-        # app.kubernetes.io/name:  prometheus
-        # app.kubernetes.io/part-of:  prometheus
-        # app.kubernetes.io/version:  v2.43.0
-        # helm.sh/chart:  prometheus-21.0.0
-        # pod-template-hash:  f9f8fb85f
+    selector:
+      app.kubernetes.io/component:  server
+      app.kubernetes.io/instance:  prometheus
+      app.kubernetes.io/managed-by:  Helm
+      app.kubernetes.io/name:  prometheus
+      app.kubernetes.io/part-of:  prometheus
+      app.kubernetes.io/version:  v2.43.0
+      helm.sh/chart:  prometheus-21.0.0
+      pod-template-hash:  f9f8fb85f
     ## @param metrics.serviceMonitor.extraParameters Any extra parameter to be added to the endpoint configured in the ServiceMonitor
     ## (e.g. tlsConfig for further customization of the HTTPS behavior)
     ## Note that the 'scheme' is automatically set to 'https' when the 'https.enabled' flag is used in this chart.
