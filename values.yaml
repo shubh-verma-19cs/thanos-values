@@ -4108,7 +4108,7 @@ metrics:
     ## @param metrics.serviceMonitor.selector Prometheus instance selector labels
     ## ref: https://github.com/bitnami/charts/tree/main/bitnami/prometheus-operator#prometheus-configuration
     ##
-    selector:
+    selector:        
         app.kubernetes.io/component:  server
         app.kubernetes.io/instance:  prometheus
         app.kubernetes.io/managed-by:  Helm
