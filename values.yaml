@@ -4076,7 +4076,7 @@ metrics:
     namespace: "prometheus"
     ## @param metrics.serviceMonitor.labels Extra labels for the ServiceMonitor
     ##
-    labels: {
+    labels:
         app.kubernetes.io/component:  server
         app.kubernetes.io/instance:  prometheus
         app.kubernetes.io/managed-by:  Helm
@@ -4085,7 +4085,6 @@ metrics:
         app.kubernetes.io/version:  v2.43.0
         helm.sh/chart:  prometheus-21.0.0
         pod-template-hash:  f9f8fb85f
-    }
     ## @param metrics.serviceMonitor.jobLabel The name of the label on the target service to use as the job name in Prometheus
     ##
     jobLabel: ""
